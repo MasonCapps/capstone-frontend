@@ -4,6 +4,7 @@ export default {
   data: function () {
     return {
       isLoggedIn: false,
+      currentSiteId: "",
     };
   },
   watch: {
@@ -11,8 +12,11 @@ export default {
       this.isLoggedIn = !!localStorage.jwt;
     },
   },
-  created: function () {
-    console.log(this.siteId);
+  methods: {
+    updateSiteId: function (siteId) {
+      console.log(siteId);
+      this.currentSiteId = siteId;
+    },
   },
 };
 </script>
@@ -37,7 +41,7 @@ export default {
   >
     <router-link to="/sites">Sites</router-link>
     |
-    <router-link :to="`/sites/dashboard/${siteId}`">Dashboard</router-link>
+    <router-link :to="`/sites/dashboard/${this.currentSiteId}`">Dashboard</router-link>
     |
     <router-link to="/orders">Orders</router-link>
     |
@@ -73,7 +77,7 @@ export default {
     </div>
     <router-link to="/logout" v-if="isLoggedIn">Logout</router-link>
   </nav>
-  <router-view />
+  <router-view @site-id="updateSiteId" />
 </template>
 
 <style>

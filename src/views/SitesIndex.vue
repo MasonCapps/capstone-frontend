@@ -18,6 +18,11 @@ export default {
         this.sites = response.data;
       });
     },
+    saveSiteId: function (site) {
+      var siteId = site.id;
+      this.$emit("site-id", siteId);
+      this.$router.push(`/sites/dashboard/${site.id}`);
+    },
   },
 };
 </script>
@@ -26,13 +31,8 @@ export default {
   <div class="home">
     <h1>{{ message }}</h1>
     <div v-for="site in sites" v-bind:key="site.id">
-      <button>
-        <h2
-          v-on:click="
-            $router.push(`/sites/dashboard/${site.id}`);
-            localStorage.setItem('dashboard_id', site.id);
-          "
-        >
+      <button v-on:click="saveSiteId(site)">
+        <h2>
           {{ site.name }}
         </h2>
       </button>
