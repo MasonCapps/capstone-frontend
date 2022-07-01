@@ -15,7 +15,7 @@ export default {
         .then((response) => {
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          this.$router.push("/sites");
+          this.$router.push("/sites/1");
         })
         .catch((error) => {
           console.log(error.response);
@@ -44,6 +44,7 @@ export default {
         <input type="password" v-model="newSessionParams.password" />
       </div>
       <input type="submit" value="Submit" />
+      <button v-on:click="this.$router.push('/sites/1')">Cancel</button>
     </form>
   </div>
 </template>

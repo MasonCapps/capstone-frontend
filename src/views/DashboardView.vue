@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 export default {
+  props: ["siteId"],
   data: function () {
     return {
       site: {},
@@ -8,11 +9,10 @@ export default {
     };
   },
   created: function () {
-    axios.get("/sites/" + this.$route.params.id + ".json").then((response) => {
+    axios.get("/sites/" + this.siteId + ".json").then((response) => {
       console.log(response.data);
       this.site = response.data;
       this.services = this.site.services;
-      localStorage.setItem("site_id", this.site.id);
     });
   },
   methods: {},
@@ -21,6 +21,7 @@ export default {
 
 <template>
   <div class="home">
+    <h3>Site URL: {{ `/sites/${this.siteId}` }}</h3>
     <h1>{{ message }}</h1>
     <div>
       <h1>{{ site.name }}</h1>
@@ -28,7 +29,6 @@ export default {
         <h3>{{ service.name }}</h3>
         <p>Price: {{ service.price }}</p>
         <p>Frequency: {{ service.frequency }}</p>
-        <button>Add To Cart</button>
       </div>
     </div>
   </div>

@@ -14,7 +14,7 @@ export default {
         .post("/users", this.newUserParams)
         .then((response) => {
           console.log(response.data);
-          this.$router.push("/login");
+          this.$router.push("/login-customer");
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
@@ -44,6 +44,14 @@ export default {
         <input type="email" v-model="newUserParams.email" />
       </div>
       <div>
+        <label>Phone Number:</label>
+        <input type="text" v-model="newUserParams.phone_number" />
+      </div>
+      <div>
+        <label>Address:</label>
+        <input type="text" v-model="newUserParams.address" />
+      </div>
+      <div>
         <label>Password:</label>
         <input type="password" v-model="newUserParams.password" />
       </div>
@@ -52,6 +60,7 @@ export default {
         <input type="password" v-model="newUserParams.password_confirmation" />
       </div>
       <input type="submit" value="Submit" />
+      <button v-on:click="this.$router.push('/sites/1')">Cancel</button>
     </form>
   </div>
 </template>
