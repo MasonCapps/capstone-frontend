@@ -51,6 +51,7 @@ export default {
         <label>Password confirmation:</label>
         <input type="password" v-model="newUserParams.password_confirmation" />
       </div>
+      <button v-on:click="this.$router.push('/')">Cancel</button>
       <input type="submit" value="Submit" />
     </form>
   </div>

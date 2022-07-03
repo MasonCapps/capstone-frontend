@@ -41,8 +41,8 @@ export default {
         <label>Name:</label>
         <input type="text" v-model="site.name" />
       </div>
-      <input type="submit" value="Submit" />
       <button v-on:click="$router.push(`/sites`)">Back To Sites</button>
+      <input type="submit" value="Submit" />
     </form>
   </div>
 </template>

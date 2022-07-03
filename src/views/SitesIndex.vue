@@ -23,6 +23,13 @@ export default {
       this.$emit("site-id", siteId);
       this.$router.push(`/sites/dashboard/${site.id}`);
     },
+    sitesDelete: function (site) {
+      axios.delete(`/sites/${site.id}`).then((response) => {
+        console.log(response.data);
+        var deletedSiteId = site.id;
+        this.sites = this.sites.filter((site) => site.id !== deletedSiteId);
+      });
+    },
   },
 };
 </script>
@@ -36,7 +43,8 @@ export default {
           {{ site.name }}
         </h2>
       </button>
-      <button v-on:click="$router.push(`/sites/${site.id}/edit`)">Edit Site name</button>
+      <button v-on:click="$router.push(`/sites/${site.id}/edit`)">Change Name</button>
+      <button v-on:click="sitesDelete(site)">Delete Site</button>
     </div>
     <router-link :to="{ path: '/sites/new' }"><button>Create Site</button></router-link>
   </div>

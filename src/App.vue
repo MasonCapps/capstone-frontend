@@ -60,27 +60,26 @@ export default {
       this.$route.path !== '/carted_services'
     "
   >
-    <router-link to="/">Home</router-link>
-    |
-    <router-link to="/sites">Sites</router-link>
-    |
-    <router-link to="/sites/:id">Show Site</router-link>
-    |
-    <router-link to="/sites/new">New Site</router-link>
-    |
-    <router-link to="/sites/dashboard">Dashboard</router-link>
-    |
-    <div v-if="!isLoggedIn">
+    <div v-if="isLoggedIn" id="link">
+      <router-link to="/sites">Sites</router-link>
+      |
+      <router-link to="/logout">Logout</router-link>
+    </div>
+    <div v-if="!isLoggedIn" id="link">
+      <router-link to="/">Home</router-link>
+      |
       <router-link to="/signup">Signup</router-link>
       |
       <router-link to="/login">Login</router-link>
     </div>
-    <router-link to="/logout" v-if="isLoggedIn">Logout</router-link>
   </nav>
   <router-view @site-id="updateSiteId" />
 </template>
 
 <style>
+#link {
+  display: inline;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
