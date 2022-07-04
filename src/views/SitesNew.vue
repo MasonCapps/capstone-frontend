@@ -4,7 +4,9 @@ export default {
   data: function () {
     return {
       newSiteParams: {},
+      newServiceParams: {},
       errors: [],
+      checker: false,
     };
   },
   created: function () {},
@@ -14,7 +16,10 @@ export default {
         .post("/sites.json", this.newSiteParams)
         .then((response) => {
           console.log(response.data);
-          this.$router.push("/sites");
+          axios.post(`/sites/${response.data.id}/services`, this.newServiceParams).then((response) => {
+            console.log(response.data);
+            this.$router.push("/sites");
+          });
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
@@ -26,17 +31,31 @@ export default {
 
 <template>
   <div class="signup">
-    <form v-on:submit.prevent="sitesCreate()">
-      <h1>Create Site</h1>
-      <ul>
-        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
-      </ul>
+    <h1>Create Site</h1>
+    <ul>
+      <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+    </ul>
+    <div>
+      <label>Site Name:</label>
+      <input type="text" v-model="newSiteParams.name" />
+    </div>
+    <h1>Add Primary Service</h1>
+    <div>
       <div>
-        <label>Name:</label>
-        <input type="text" v-model="newSiteParams.name" />
+        <label>Service Name:</label>
+        <input type="text" v-model="newServiceParams.name" />
       </div>
-      <input type="submit" value="Submit" />
-    </form>
+      <div>
+        <label>Price in Dollars:</label>
+        <input type="text" v-model="newServiceParams.price" />
+      </div>
+      <div>
+        <label>Frequency:</label>
+        <input type="text" v-model="newServiceParams.frequency" />
+      </div>
+    </div>
+    <button v-on:click="this.$router.push('/sites')">Cancel</button>
+    <button v-on:click="sitesCreate()">Create Site</button>
   </div>
 </template>
 
