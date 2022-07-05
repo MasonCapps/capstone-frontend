@@ -42,6 +42,13 @@ export default {
         this.newServiceParams = {};
       });
     },
+    deleteService: function (service) {
+      axios.delete(`/sites/${this.siteId}/services/${service.id}`).then((response) => {
+        console.log(response.data);
+        var deletedServiceId = service.id;
+        this.services = this.services.filter((service) => service.id !== deletedServiceId);
+      });
+    },
   },
 };
 </script>
@@ -58,6 +65,7 @@ export default {
         <p>Price: ${{ service.price }}</p>
         <p>Frequency: {{ service.frequency }}</p>
         <button v-on:click="editModalService(service)">Edit Service</button>
+        <button v-on:click="deleteService(service)">Delete Service</button>
       </div>
     </div>
   </div>
