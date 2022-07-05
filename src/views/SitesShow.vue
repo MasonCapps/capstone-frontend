@@ -5,6 +5,7 @@ export default {
     return {
       site: {},
       services: [],
+      newCartParams: {},
     };
   },
   created: function () {
@@ -15,7 +16,16 @@ export default {
       localStorage.setItem("site_id", this.site.id);
     });
   },
-  methods: {},
+  methods: {
+    createCartedService: function (service) {
+      this.newCartParams.service_id = service.id;
+      this.newCartParams.user_id = 2;
+      axios.post(`/sites/${this.site.id}/carted_services.json`, this.newCartParams).then((response) => {
+        console.log(response.data);
+        this.newCartParams = {};
+      });
+    },
+  },
 };
 </script>
 
@@ -28,7 +38,12 @@ export default {
         <h3>{{ service.name }}</h3>
         <p>Price: {{ service.price }}</p>
         <p>Frequency: {{ service.frequency }}</p>
-        <button>Add To Cart</button>
+        <div>
+          Date of Service:
+          <input type="text" v-model="newCartParams.scheduled_date" />
+        </div>
+        <br />
+        <button v-on:click="createCartedService(service)">Add To Cart</button>
       </div>
     </div>
   </div>

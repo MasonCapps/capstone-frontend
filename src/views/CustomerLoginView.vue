@@ -43,8 +43,8 @@ export default {
         <label>Password:</label>
         <input type="password" v-model="newSessionParams.password" />
       </div>
-      <input type="submit" value="Submit" />
       <button v-on:click="this.$router.push('/sites/1')">Cancel</button>
+      <input type="submit" value="Submit" />
     </form>
   </div>
 </template>
