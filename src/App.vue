@@ -5,7 +5,11 @@ export default {
     return {
       isLoggedIn: false,
       currentSiteId: "",
+      localStorageSiteId: "",
     };
+  },
+  created: function () {
+    this.localStorageSiteId = localStorage.site_id;
   },
   watch: {
     $route: function () {
@@ -22,7 +26,7 @@ export default {
 </script>
 
 <template>
-  <nav v-if="this.$route.path === '/sites/1'">
+  <nav v-if="this.$route.path === `/sites/${this.localStorageSiteId}`">
     <router-link to="/carted_services">Cart</router-link>
     |
     <div v-if="!isLoggedIn">
@@ -60,7 +64,7 @@ export default {
       this.$route.path !== '/carted_services'
     "
   >
-    <div v-if="isLoggedIn" id="link">
+    <div id="link" v-if="isLoggedIn && this.$route.path !== `/sites/${this.localStorageSiteId}`">
       <router-link to="/sites">Sites</router-link>
       |
       <router-link to="/logout">Logout</router-link>

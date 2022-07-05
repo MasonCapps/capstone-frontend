@@ -19,6 +19,15 @@ export default {
         this.carted_services = response.data;
       });
     },
+    deleteCartedService: function (carted_service) {
+      axios.delete(`/sites/${carted_service.site_id}/carted_services/${carted_service.id}`).then((response) => {
+        console.log(response.data);
+        var deletedCartedServiceId = carted_service.id;
+        this.carted_services = this.carted_services.filter(
+          (carted_service) => carted_service.id !== deletedCartedServiceId
+        );
+      });
+    },
   },
 };
 </script>
@@ -31,8 +40,9 @@ export default {
       <h2>{{ carted_service.scheduled_date }}</h2>
       <h2>{{ carted_service.service.price }}</h2>
       <h2>{{ carted_service.service.frequency }}</h2>
-      <button>Delete From Cart</button>
+      <button v-on:click="deleteCartedService(carted_service)">Delete From Cart</button>
     </div>
+    <button v-on:click="$router.go(-1)">Back To Site</button>
     <button v-on:click="createOrder()">Checkout</button>
   </div>
 </template>
