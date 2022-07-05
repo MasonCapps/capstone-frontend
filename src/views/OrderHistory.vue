@@ -43,8 +43,9 @@ export default {
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <div v-for="(carted_service, index) in carted_services" v-bind:key="carted_service.id">
+    <div v-for="(carted_service, index) in carted_services.reverse()" v-bind:key="carted_service.id">
       <h4>Scheduled Date: {{ carted_service.scheduled_date }}</h4>
+      <h4>Created At: {{ orders[index].created_at }}</h4>
       <h4>Total: {{ orders[index].total }}</h4>
     </div>
     <button v-on:click="this.$router.push(`/sites/${this.siteId}`)">Back To Site</button>
