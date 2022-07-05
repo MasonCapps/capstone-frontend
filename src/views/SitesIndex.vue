@@ -19,6 +19,7 @@ export default {
       });
     },
     saveSiteId: function (site) {
+      localStorage.setItem("creator_site", site.id);
       var siteId = site.id;
       this.$emit("site-id", siteId);
       this.$router.push(`/sites/dashboard/${site.id}`);

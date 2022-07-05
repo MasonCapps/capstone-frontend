@@ -14,6 +14,7 @@ import CustomerLogoutView from "../views/CustomerLogoutView.vue";
 import LoginView from "../views/LoginView.vue";
 import LogoutView from "../views/LogoutView.vue";
 import CartIndex from "../views/CartIndex.vue";
+import OrderHistory from "../views/OrderHistory.vue";
 
 const routes = [
   {
@@ -51,6 +52,11 @@ const routes = [
     path: "/orders",
     name: "orders",
     component: OrdersIndex,
+  },
+  {
+    path: "/orders-history",
+    name: "orders-history",
+    component: OrderHistory,
   },
   {
     path: "/schedule",

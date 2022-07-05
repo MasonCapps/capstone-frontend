@@ -7,6 +7,7 @@ export default {
       carted_services: [],
       site: {},
       newSiteParams: {},
+      siteId: localStorage.site_id,
     };
   },
   created: function () {
@@ -31,7 +32,7 @@ export default {
     createOrder: function () {
       axios.post(`/sites/${localStorage.site_id}/orders.json`).then((response) => {
         console.log(response.data);
-        this.$router.go(-1);
+        this.$router.push("/orders-history");
       });
     },
   },
@@ -48,7 +49,7 @@ export default {
       <h2>{{ carted_service.service.frequency }}</h2>
       <button v-on:click="deleteCartedService(carted_service)">Delete From Cart</button>
     </div>
-    <button v-on:click="$router.go(-1)">Back To Site</button>
+    <button v-on:click="this.$router.push(`/sites/${this.siteId}`)">Back To Site</button>
     <button v-on:click="createOrder()">Checkout</button>
   </div>
 </template>

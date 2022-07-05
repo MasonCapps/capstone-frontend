@@ -6,10 +6,13 @@ export default {
       isLoggedIn: false,
       currentSiteId: "",
       localStorageSiteId: "",
+      localStorageCreatorSiteId: "",
     };
   },
   created: function () {
     this.localStorageSiteId = localStorage.site_id;
+    console.log(this.localStorageSiteId);
+    this.localStorageCreatorSiteId = localStorage.creator_site;
   },
   watch: {
     $route: function () {
@@ -26,8 +29,18 @@ export default {
 </script>
 
 <template>
-  <nav v-if="this.$route.path === `/sites/${this.localStorageSiteId}`">
+  <nav
+    v-if="
+      this.$route.path === `/sites/${this.localStorageSiteId}` ||
+      this.$route.path === '/orders-history' ||
+      this.$route.path === '/carted_services'
+    "
+  >
+    <router-link :to="`/sites/${this.localStorageSiteId}`">Home</router-link>
+    |
     <router-link to="/carted_services">Cart</router-link>
+    |
+    <router-link to="/orders-history">Order History</router-link>
     |
     <div v-if="!isLoggedIn">
       <router-link to="/signup-customer">Signup</router-link>
@@ -64,7 +77,12 @@ export default {
       this.$route.path !== '/carted_services'
     "
   >
-    <div id="link" v-if="isLoggedIn && this.$route.path !== `/sites/${this.localStorageSiteId}`">
+    <div
+      id="link"
+      v-if="
+        isLoggedIn && this.$route.path !== `/sites/${this.localStorageSiteId}` && this.$route.path !== '/orders-history'
+      "
+    >
       <router-link to="/sites">Sites</router-link>
       |
       <router-link to="/logout">Logout</router-link>
