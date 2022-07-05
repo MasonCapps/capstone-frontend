@@ -28,6 +28,12 @@ export default {
         );
       });
     },
+    createOrder: function () {
+      axios.post(`/sites/${localStorage.site_id}/orders.json`).then((response) => {
+        console.log(response.data);
+        this.$router.go(-1);
+      });
+    },
   },
 };
 </script>
