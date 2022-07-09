@@ -1,52 +1,34 @@
 <script>
 import axios from "axios";
 export default {
-  props: ["siteId"],
   data: function () {
     return {
-      site: {},
-      services: [],
-      currentService: {},
-      newServiceParams: {},
+      message: "Orders",
+      orders: [],
+      newSiteParams: {},
+      cartedServices: [],
     };
   },
   created: function () {
-    axios.get("/sites/" + this.siteId + ".json").then((response) => {
-      console.log(response.data);
-      this.site = response.data;
-      this.services = this.site.services;
-    });
+    this.ordersIndex();
+    this.cartedServicesIndex();
   },
   methods: {
-    editModalService: function (service) {
-      this.currentService = service;
-      document.querySelector("#service-edit").showModal();
-    },
-    addModalService: function () {
-      document.querySelector("#service-add").showModal();
-    },
-    updateService: function (currentService) {
-      axios
-        .patch(`/sites/${this.siteId}/services/${currentService.id}`, this.currentService)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
-    },
-    createService: function () {
-      axios.post(`/sites/${this.siteId}/services`, this.newServiceParams).then((response) => {
+    ordersIndex: function () {
+      axios.get(`/sites/${localStorage.creator_site}/orders.json`).then((response) => {
         console.log(response.data);
-        this.services.push(response.data);
-        this.newServiceParams = {};
+        this.orders = response.data;
+        this.orders = this.orders.filter((order) => order.total > 0);
       });
     },
-    deleteService: function (service) {
-      axios.delete(`/sites/${this.siteId}/services/${service.id}`).then((response) => {
+    cartedServicesIndex: function () {
+      axios.get(`/sites/${localStorage.creator_site}.json`).then((response) => {
         console.log(response.data);
-        var deletedServiceId = service.id;
-        this.services = this.services.filter((service) => service.id !== deletedServiceId);
+        this.site = response.data;
+        this.siteId = response.data.id;
+        this.carted_services = this.site.carted_services;
+        this.carted_services = this.carted_services.filter((service) => service.status === "purchased");
+        console.log(this.carted_services);
       });
     },
   },
@@ -54,71 +36,90 @@ export default {
 </script>
 
 <template>
-  <div class="home">
-    <h3>Site URL: localhost:8080{{ `/sites/${this.siteId}` }}</h3>
-    <h1>{{ message }}</h1>
-    <div>
-      <h1>{{ site.name }}</h1>
-      <button v-on:click="addModalService()">Add Service</button>
-      <div v-for="service in services" v-bind:key="service.id">
-        <h3>{{ service.name }}</h3>
-        <p>Price: ${{ service.price }}</p>
-        <p>Frequency: {{ service.frequency }}</p>
-        <button v-on:click="editModalService(service)">Edit Service</button>
-        <button v-on:click="deleteService(service)">Delete Service</button>
+  <div id="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+          <i class="fas fa-download fa-sm text-white-50"></i>
+          Generate Report
+        </a> -->
+      </div>
+
+      <!-- Content Row -->
+      <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Total)</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Orders (Total)</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Row -->
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Phone Number</th>
+                  <th>Scheduled Date</th>
+                  <th>Revenue</th>
+                </tr>
+              </thead>
+              <tbody v-for="(order, index) in orders" v-bind:key="order.id">
+                <tr>
+                  <td>{{ order.first_name }} {{ order.last_name }}</td>
+                  <td>{{ order.address }}</td>
+                  <td>{{ order.phone_number }}</td>
+                  <td v-if="carted_services[index]">{{ carted_services[index].scheduled_date }}</td>
+                  <td>{{ order.total }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- /.container-fluid -->
+    <!-- End of Main Content -->
   </div>
-
-  <dialog id="service-add">
-    <form method="dialog">
-      <div>
-        <h1><u>Create Service</u></h1>
-        <div>
-          <label>Service Name:</label>
-          <input type="text" v-model="this.newServiceParams.name" />
-        </div>
-        <div>
-          <label>Price in Dollars:</label>
-          <input type="text" v-model="this.newServiceParams.price" />
-        </div>
-        <div>
-          <label>Frequency:</label>
-          <input type="text" v-model="this.newServiceParams.frequency" />
-        </div>
-        <br />
-        <div>
-          <button>Cancel</button>
-          <button v-on:click="createService()">Create</button>
-        </div>
-      </div>
-    </form>
-  </dialog>
-
-  <dialog id="service-edit">
-    <form method="dialog">
-      <h1><u>Edit Service</u></h1>
-      <div>
-        <div>
-          <label>Service Name:</label>
-          <input type="text" v-model="this.currentService.name" />
-        </div>
-        <div>
-          <label>Price in Dollars:</label>
-          <input type="text" v-model="this.currentService.price" />
-        </div>
-        <div>
-          <label>Frequency:</label>
-          <input type="text" v-model="this.currentService.frequency" />
-        </div>
-      </div>
-      <br />
-      <div>
-        <button>Cancel</button>
-        <button v-on:click="updateService(currentService)">Save</button>
-      </div>
-    </form>
-  </dialog>
 </template>
 
 <style></style>

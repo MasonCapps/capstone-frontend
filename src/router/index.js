@@ -4,6 +4,7 @@ import SitesIndex from "../views/SitesIndex.vue";
 import SitesShow from "../views/SitesShow.vue";
 import SitesNew from "../views/SitesNew.vue";
 import SitesEdit from "../views/SitesEdit.vue";
+import DashboardEdit from "../views/DashboardEdit.vue";
 import DashboardView from "../views/DashboardView.vue";
 import OrdersIndex from "../views/OrdersIndex.vue";
 import ScheduleView from "../views/ScheduleView.vue";
@@ -43,8 +44,14 @@ const routes = [
     component: SitesEdit,
   },
   {
+    path: "/sites/dashboard/:siteId/edit",
+    name: "dashboard-edit",
+    component: DashboardEdit,
+    props: true,
+  },
+  {
     path: "/sites/dashboard/:siteId",
-    name: "dashboard",
+    name: "dashboard-view",
     component: DashboardView,
     props: true,
   },
