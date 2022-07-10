@@ -73,13 +73,6 @@ export default {
           </div>
         </div>
       </div>
-      <!-- <button v-on:click="saveSiteId(site)">
-        <h2>
-          {{ site.name }}
-        </h2>
-      </button>
-      <button v-on:click="$router.push(`/sites/${site.id}/edit`)">Change Name</button>
-      <button v-on:click="sitesDelete(site)">Delete Site</button> -->
     </div>
   </div>
 </template>
