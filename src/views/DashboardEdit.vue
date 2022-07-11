@@ -55,7 +55,7 @@ export default {
 
 <template>
   <div class="home">
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-12 mb-4">
       <div class="card border-left-info shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
@@ -72,15 +72,60 @@ export default {
     </div>
     <h1>{{ message }}</h1>
     <div>
-      <h1>{{ site.name }}</h1>
-      <button v-on:click="addModalService()">Add Service</button>
-      <div v-for="service in services" v-bind:key="service.id">
+      <div class="col-lg-12" style="margin-left: -150px">
+        <h1 class="company py-4 text-gray-900 col-4">
+          {{ site.name }}
+        </h1>
+        <button
+          style="margin-right: -100px"
+          class="create-button py-2 btn btn-sm btn-primary mb-3 col-2"
+          v-on:click="addModalService()"
+        >
+          Add Service
+        </button>
+      </div>
+      <div class="col-lg-12" style="margin: 45px; margin-top: -10px">
+        <div class="row" style="margin: 10px">
+          <div
+            style="margin: 10px"
+            class="card shadow mb-4 col-lg-5 py-3 justify-content-between"
+            v-for="service in services"
+            v-bind:key="service.id"
+          >
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">{{ service.name }}</h6>
+            </div>
+            <div class="card-body">
+              <div>Price: ${{ service.price }}</div>
+              <div>Frequency: {{ service.frequency }}</div>
+              <hr />
+              <div>
+                <button
+                  style="margin: 5px"
+                  class="py-2 btn btn-sm btn-danger mb-3 col-5"
+                  v-on:click="deleteService(service)"
+                >
+                  Delete Service
+                </button>
+                <button
+                  style="margin: 5px"
+                  class="py-2 btn btn-sm btn-primary mb-3 col-5"
+                  v-on:click="editModalService(service)"
+                >
+                  Edit Service
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div v-for="service in services" v-bind:key="service.id">
         <h3>{{ service.name }}</h3>
         <p>Price: ${{ service.price }}</p>
         <p>Frequency: {{ service.frequency }}</p>
         <button v-on:click="editModalService(service)">Edit Service</button>
         <button v-on:click="deleteService(service)">Delete Service</button>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -138,5 +183,11 @@ export default {
 <style>
 .i-button {
   color: #36b9cc;
+}
+.create-button {
+  display: inline-block;
+}
+.company {
+  display: inline-block;
 }
 </style>

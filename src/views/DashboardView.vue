@@ -10,7 +10,7 @@ export default {
       ordersTotal: 0,
     };
   },
-  created: function () {
+  mounted: function () {
     this.ordersIndex();
     this.cartedServicesIndex();
   },
@@ -19,11 +19,12 @@ export default {
       axios.get(`/sites/${localStorage.creator_site}/orders.json`).then((response) => {
         console.log(response.data);
         this.orders = response.data;
-        this.orders = this.orders.filter((order) => order.total > 0);
-        for (var index = 0; index < this.orders.length; index++) {
+        // this.orders = this.orders.filter((order) => order.total > 0);
+        for (let index = 0; index < this.orders.length; index++) {
           this.ordersTotal += parseInt(this.orders[index].total);
         }
         this.ordersTotal = this.ordersTotal.toFixed(2);
+        console.log("test", this.ordersTotal);
       });
     },
     cartedServicesIndex: function () {
