@@ -103,21 +103,25 @@ export default {
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Name</th>
+                  <th>Customer Name</th>
                   <th>Address</th>
                   <th>Phone Number</th>
+                  <th>Service Name</th>
                   <th>Scheduled Date</th>
                   <th>Revenue</th>
                 </tr>
               </thead>
-              <tbody v-for="(order, index) in orders" v-bind:key="order.id">
+              <tbody v-for="order in orders" v-bind:key="order.id">
+                <!-- <div v-for="service in order.services" v-bind:key="service.id"> -->
                 <tr>
                   <td>{{ order.first_name }} {{ order.last_name }}</td>
                   <td>{{ order.address }}</td>
                   <td>{{ order.phone_number }}</td>
-                  <td v-if="carted_services[index]">{{ carted_services[index].scheduled_date }}</td>
+                  <!-- <td>{{ service.service }}</td> -->
+                  <!-- <td>{{ service.scheduled_date }}</td> -->
                   <td>{{ order.total }}</td>
                 </tr>
+                <!-- </div> -->
               </tbody>
             </table>
           </div>

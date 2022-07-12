@@ -132,7 +132,7 @@ export default {
   <dialog id="service-add">
     <form method="dialog">
       <div>
-        <h1><u>Create Service</u></h1>
+        <h1 style="text-align: center"><u>Create Service</u></h1>
         <div>
           <label>Service Name:</label>
           <input type="text" v-model="this.newServiceParams.name" />
@@ -146,9 +146,11 @@ export default {
           <input type="text" v-model="this.newServiceParams.frequency" />
         </div>
         <br />
-        <div>
-          <button>Cancel</button>
-          <button v-on:click="createService()">Create</button>
+        <div style="margin-left: 25px">
+          <button style="margin: 5px" class="py-2 btn btn-sm btn-danger mb-3 col-5">Cancel</button>
+          <button style="margin: 5px" class="py-2 btn btn-sm btn-primary mb-3 col-5" v-on:click="createService()">
+            Create
+          </button>
         </div>
       </div>
     </form>
@@ -156,7 +158,7 @@ export default {
 
   <dialog id="service-edit">
     <form method="dialog">
-      <h1><u>Edit Service</u></h1>
+      <h1 style="text-align: center"><u>Edit Service</u></h1>
       <div>
         <div>
           <label>Service Name:</label>
@@ -172,9 +174,15 @@ export default {
         </div>
       </div>
       <br />
-      <div>
-        <button>Cancel</button>
-        <button v-on:click="updateService(currentService)">Save</button>
+      <div style="margin-left: 25px">
+        <button style="margin: 5px" class="py-2 btn btn-sm btn-danger mb-3 col-5">Cancel</button>
+        <button
+          style="margin: 5px"
+          class="py-2 btn btn-sm btn-primary mb-3 col-5"
+          v-on:click="updateService(currentService)"
+        >
+          Save
+        </button>
       </div>
     </form>
   </dialog>
