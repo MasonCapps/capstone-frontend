@@ -129,24 +129,24 @@ export default {
     </div>
   </div>
 
-  <dialog id="service-add">
+  <dialog id="service-add" style="margin-left: 419px; width: 500px">
     <form method="dialog">
       <div>
         <h1 style="text-align: center"><u>Create Service</u></h1>
-        <div>
+        <div style="text-align: center">
           Service Name:
           <input type="text" v-model="this.newServiceParams.name" />
         </div>
-        <div>
+        <div style="text-align: center">
           Price in Dollars:
           <input type="text" v-model="this.newServiceParams.price" />
         </div>
-        <div>
+        <div style="text-align: center">
           Frequency:
           <input type="text" v-model="this.newServiceParams.frequency" />
         </div>
         <br />
-        <div style="margin-left: 25px">
+        <div style="text-align: center">
           <button style="margin: 5px" class="py-2 btn btn-sm btn-danger mb-3 col-5">Cancel</button>
           <button style="margin: 5px" class="py-2 btn btn-sm btn-primary mb-3 col-5" v-on:click="createService()">
             Create
@@ -156,25 +156,25 @@ export default {
     </form>
   </dialog>
 
-  <dialog id="service-edit">
+  <dialog id="service-edit" style="margin-left: 419px; width: 500px">
     <form method="dialog">
       <h1 style="text-align: center"><u>Edit Service</u></h1>
       <div>
-        <div>
+        <div style="text-align: center">
           Service Name:
           <input type="text" v-model="this.currentService.name" />
         </div>
-        <div>
+        <div style="text-align: center">
           Price in Dollars:
           <input type="text" v-model="this.currentService.price" />
         </div>
-        <div>
+        <div style="text-align: center">
           Frequency:
           <input type="text" v-model="this.currentService.frequency" />
         </div>
       </div>
       <br />
-      <div style="margin-left: 25px">
+      <div style="text-align: center">
         <button style="margin: 5px" class="py-2 btn btn-sm btn-danger mb-3 col-5">Cancel</button>
         <button
           style="margin: 5px"

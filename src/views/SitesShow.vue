@@ -31,7 +31,6 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
     <div>
       <h1 style="text-align: center" class="py-4 text-gray-900">{{ site.name }}</h1>
       <div class="col-lg-12" style="margin: 45px; margin-top: -10px">

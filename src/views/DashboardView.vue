@@ -112,16 +112,16 @@ export default {
                 </tr>
               </thead>
               <tbody v-for="order in orders" v-bind:key="order.id">
-                <!-- <div v-for="service in order.services" v-bind:key="service.id"> -->
-                <tr>
+                <tr v-for="service in order.services" v-bind:key="service.id">
                   <td>{{ order.first_name }} {{ order.last_name }}</td>
                   <td>{{ order.address }}</td>
                   <td>{{ order.phone_number }}</td>
-                  <!-- <td>{{ service.service }}</td> -->
-                  <!-- <td>{{ service.scheduled_date }}</td> -->
-                  <td>{{ order.total }}</td>
+                  <td>{{ service.service.name }}</td>
+                  <td>
+                    {{ new Date(service.scheduled_date).toLocaleDateString("en-us", {}) }}
+                  </td>
+                  <td>{{ service.service.price }}</td>
                 </tr>
-                <!-- </div> -->
               </tbody>
             </table>
           </div>

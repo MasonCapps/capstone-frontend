@@ -112,7 +112,9 @@ export default {
       v-if="
         this.$route.path === `/sites/1` ||
         this.$route.path === `/carted_services` ||
-        this.$route.path === `/orders-history`
+        this.$route.path === `/orders-history` ||
+        this.$route.path === '/login-customer' ||
+        this.$route.path === '/signup-customer'
       "
     >
       <!-- Nav Item - Dashboard -->
@@ -171,7 +173,9 @@ export default {
       v-if="
         this.$route.path !== `/sites/1` &&
         this.$route.path !== `/carted_services` &&
-        this.$route.path !== `/orders-history`
+        this.$route.path !== `/orders-history` &&
+        this.$route.path !== '/login-customer' &&
+        this.$route.path !== '/signup-customer'
       "
     >
       <!-- Nav Item - Dashboard -->
@@ -214,7 +218,10 @@ export default {
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
-          this.$route.path !== '/sites'
+          this.$route.path !== '/sites' &&
+          this.$route.path !== '/login-customer' &&
+          this.$route.path !== '/signup-customer' &&
+          this.$route.path !== '/sites/new'
         "
       >
         Moderate
@@ -227,7 +234,10 @@ export default {
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
-          this.$route.path !== '/sites'
+          this.$route.path !== '/sites' &&
+          this.$route.path !== '/login-customer' &&
+          this.$route.path !== '/signup-customer' &&
+          this.$route.path !== '/sites/new'
         "
         class="nav-item active"
       >
@@ -242,7 +252,10 @@ export default {
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
-          this.$route.path !== '/sites'
+          this.$route.path !== '/sites' &&
+          this.$route.path !== '/login-customer' &&
+          this.$route.path !== '/signup-customer' &&
+          this.$route.path !== '/sites/new'
         "
         class="nav-item"
       >
@@ -259,7 +272,10 @@ export default {
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
-          this.$route.path !== '/sites'
+          this.$route.path !== '/sites' &&
+          this.$route.path !== '/login-customer' &&
+          this.$route.path !== '/signup-customer' &&
+          this.$route.path !== '/sites/new'
         "
         class="nav-item active"
       >
@@ -274,7 +290,10 @@ export default {
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
-          this.$route.path !== '/sites'
+          this.$route.path !== '/sites' &&
+          this.$route.path !== '/login-customer' &&
+          this.$route.path !== '/signup-customer' &&
+          this.$route.path !== '/sites/new'
         "
         class="nav-item"
       >
@@ -292,7 +311,8 @@ export default {
         this.$route.path !== '/' &&
         this.$route.path !== '/login' &&
         this.$route.path !== '/signup' &&
-        this.$route.path !== '/sites'
+        this.$route.path !== '/sites' &&
+        this.$route.path !== '/sites/new'
       "
       class="sidebar-divider"
     />
@@ -302,12 +322,14 @@ export default {
     <div class="sidebar-heading">Account</div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item active" v-if="!isLoggedIn && this.$route.path === '/signup-customer'">
       <a
         v-if="
-          (!isLoggedIn && this.$route.path === `/sites/1`) ||
+          this.$route.path === `/sites/1` ||
           this.$route.path === `/carted_services` ||
-          this.$route.path === `/orders-history`
+          this.$route.path === `/orders-history` ||
+          this.$route.path === `/login-customer` ||
+          this.$route.path === `/signup-customer`
         "
         class="nav-link"
         href="/signup-customer"
@@ -315,12 +337,31 @@ export default {
         <i class="fas fa-user-plus"></i>
         <span>Register</span>
       </a>
+    </li>
+    <li class="nav-item" v-if="!isLoggedIn && this.$route.path !== '/signup-customer'">
       <a
         v-if="
-          !isLoggedIn &&
+          this.$route.path === `/sites/1` ||
+          this.$route.path === `/carted_services` ||
+          this.$route.path === `/orders-history` ||
+          this.$route.path === `/login-customer` ||
+          this.$route.path === `/signup-customer`
+        "
+        class="nav-link"
+        href="/signup-customer"
+      >
+        <i class="fas fa-user-plus"></i>
+        <span>Register</span>
+      </a>
+    </li>
+    <li class="nav-item active" v-if="!isLoggedIn && this.$route.path === '/signup'">
+      <a
+        v-if="
           this.$route.path !== `/sites/1` &&
           this.$route.path !== `/carted_services` &&
-          this.$route.path !== `/orders-history`
+          this.$route.path !== `/orders-history` &&
+          this.$route.path !== `/login-customer` &&
+          this.$route.path !== `/signup-customer`
         "
         class="nav-link"
         href="/signup"
@@ -328,27 +369,33 @@ export default {
         <i class="fas fa-user-plus"></i>
         <span>Register</span>
       </a>
-      <!-- <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div> -->
+    </li>
+    <li class="nav-item" v-if="!isLoggedIn && this.$route.path !== '/signup'">
+      <a
+        v-if="
+          this.$route.path !== `/sites/1` &&
+          this.$route.path !== `/carted_services` &&
+          this.$route.path !== `/orders-history` &&
+          this.$route.path !== `/login-customer` &&
+          this.$route.path !== `/signup-customer`
+        "
+        class="nav-link"
+        href="/signup"
+      >
+        <i class="fas fa-user-plus"></i>
+        <span>Register</span>
+      </a>
     </li>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <li class="nav-item active" v-if="!isLoggedIn && this.$route.path === '/login-customer'">
       <a
         v-if="
-          (!isLoggedIn && this.$route.path === `/sites/1`) ||
+          this.$route.path === `/sites/1` ||
           this.$route.path === `/carted_services` ||
-          this.$route.path === `/orders-history`
+          this.$route.path === `/orders-history` ||
+          this.$route.path === `/login-customer` ||
+          this.$route.path === `/signup-customer`
         "
         class="nav-link"
         href="/login-customer"
@@ -357,13 +404,46 @@ export default {
         <span>Login</span>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" v-if="!isLoggedIn && this.$route.path !== '/login-customer'">
       <a
         v-if="
-          !isLoggedIn &&
+          this.$route.path === `/sites/1` ||
+          this.$route.path === `/carted_services` ||
+          this.$route.path === `/orders-history` ||
+          this.$route.path === `/login-customer` ||
+          this.$route.path === `/signup-customer`
+        "
+        class="nav-link"
+        href="/login-customer"
+      >
+        <i class="fas fa-user"></i>
+        <span>Login</span>
+      </a>
+    </li>
+    <li class="nav-item active" v-if="!isLoggedIn && this.$route.path === '/login'">
+      <a
+        v-if="
           this.$route.path !== `/sites/1` &&
           this.$route.path !== `/carted_services` &&
-          this.$route.path !== `/orders-history`
+          this.$route.path !== `/orders-history` &&
+          this.$route.path !== `/login-customer` &&
+          this.$route.path !== `/signup-customer`
+        "
+        class="nav-link"
+        href="/login"
+      >
+        <i class="fas fa-user"></i>
+        <span>Login</span>
+      </a>
+    </li>
+    <li class="nav-item" v-if="!isLoggedIn && this.$route.path !== '/login'">
+      <a
+        v-if="
+          this.$route.path !== `/sites/1` &&
+          this.$route.path !== `/carted_services` &&
+          this.$route.path !== `/orders-history` &&
+          this.$route.path !== `/login-customer` &&
+          this.$route.path !== `/signup-customer`
         "
         class="nav-link"
         href="/login"
@@ -374,10 +454,10 @@ export default {
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item" v-if="isLoggedIn">
       <a
         v-if="
-          (isLoggedIn && this.$route.path === `/sites/1`) ||
+          this.$route.path === `/sites/1` ||
           this.$route.path === `/carted_services` ||
           this.$route.path === `/orders-history`
         "

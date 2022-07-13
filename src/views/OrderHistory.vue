@@ -30,6 +30,7 @@ export default {
       });
     },
     ordersIndex: function () {
+      console.log(localStorage.user_id);
       axios.get(`/sites/${localStorage.site_id}/orders.json`).then((response) => {
         console.log(response.data);
         this.orders = response.data;
@@ -61,10 +62,11 @@ export default {
               <tr>
                 <th>Purchase Date</th>
                 <th>Scheduled Date</th>
-                <th>Total</th>
+                <th>Service Name</th>
+                <th>Price</th>
               </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
               <tr v-for="(carted_service, index) in carted_services.reverse()" v-bind:key="carted_service.id">
                 <td>
                   {{
@@ -77,6 +79,24 @@ export default {
                 </td>
                 <td>{{ carted_service.scheduled_date }}</td>
                 <td>{{ orders[index].total }}</td>
+              </tr>
+            </tbody> -->
+            <tbody v-for="order in orders" v-bind:key="order.id">
+              <tr v-for="service in order.services" v-bind:key="service.id">
+                <td>
+                  {{ new Date(service.created_at).toLocaleDateString("en-us", {}) }}
+                </td>
+                <td>
+                  {{
+                    new Date(service.scheduled_date).toLocaleDateString("en-us", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })
+                  }}
+                </td>
+                <td>{{ service.service.name }}</td>
+                <td>{{ service.service.price }}</td>
               </tr>
             </tbody>
           </table>
