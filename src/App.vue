@@ -104,7 +104,7 @@ export default {
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
       <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
+        <i class="fas fa-briefcase"></i>
       </div>
       <div class="sidebar-brand-text mx-3">Servify</div>
     </a>
@@ -117,14 +117,14 @@ export default {
     >
       <!-- Nav Item - Dashboard -->
       <li v-if="this.$route.path == '/sites/1'" class="nav-item active">
-        <a v-if="isLoggedIn" class="nav-link" href="/sites/1">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+        <a class="nav-link" href="/sites/1">
+          <i class="fas fa-home"></i>
           <span>Home</span>
         </a>
       </li>
       <li v-if="this.$route.path != '/sites/1'" class="nav-item">
         <a class="nav-link" href="/sites/1">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-home"></i>
           <span>Home</span>
         </a>
       </li>
@@ -135,18 +135,18 @@ export default {
 
       <!-- <div v-if="currentSiteId"> -->
       <!-- Heading -->
-      <div class="sidebar-heading">Moderate</div>
+      <div class="sidebar-heading">Options</div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li v-if="this.$route.path == `/carted_services`" class="nav-item active">
         <a class="nav-link" v-bind:href="`/carted_services`">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-shopping-cart"></i>
           <span>Cart</span>
         </a>
       </li>
       <li v-if="this.$route.path != `/carted_services`" class="nav-item">
         <a class="nav-link" v-bind:href="`/carted_services`">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-shopping-cart"></i>
           <span>Cart</span>
         </a>
       </li>
@@ -154,13 +154,13 @@ export default {
       <!-- Nav Item - Utilities Collapse Menu -->
       <li v-if="this.$route.path === `/orders-history`" class="nav-item active">
         <a class="nav-link" v-bind:href="`/orders-history`">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-calendar"></i>
           <span>Order History</span>
         </a>
       </li>
       <li v-if="this.$route.path !== `/orders-history`" class="nav-item">
         <a class="nav-link" v-bind:href="`/orders-history`">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-calendar"></i>
           <span>Order History</span>
         </a>
       </li>
@@ -175,23 +175,29 @@ export default {
       "
     >
       <!-- Nav Item - Dashboard -->
-      <li v-if="this.$route.path === '/sites'" class="nav-item active">
-        <a v-if="isLoggedIn" class="nav-link" href="/sites">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Home</span>
-        </a>
-        <a v-if="!isLoggedIn" class="nav-link" href="/">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+      <li v-if="this.$route.path === '/'" class="nav-item active">
+        <a class="nav-link" href="/">
+          <i class="fas fa-home"></i>
           <span>Home</span>
         </a>
       </li>
-      <li v-if="this.$route.path !== '/sites'" class="nav-item">
+      <li v-if="this.$route.path === '/sites'" class="nav-item active">
         <a v-if="isLoggedIn" class="nav-link" href="/sites">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-store"></i>
+          <span>Sites</span>
+        </a>
+        <!-- <a v-if="!isLoggedIn" class="nav-link" href="/">
+          <i class="fas fa-home"></i>
           <span>Home</span>
+        </a> -->
+      </li>
+      <li v-if="this.$route.path !== '/sites' && this.$route.path !== '/'" class="nav-item">
+        <a v-if="isLoggedIn" class="nav-link" href="/sites">
+          <i class="fas fa-store"></i>
+          <span>Sites</span>
         </a>
         <a v-if="!isLoggedIn" class="nav-link" href="/">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-home"></i>
           <span>Home</span>
         </a>
       </li>
@@ -202,30 +208,76 @@ export default {
 
       <!-- <div v-if="currentSiteId"> -->
       <!-- Heading -->
-      <div class="sidebar-heading">Moderate</div>
+      <div
+        class="sidebar-heading"
+        v-if="
+          this.$route.path !== '/' &&
+          this.$route.path !== '/login' &&
+          this.$route.path !== '/signup' &&
+          this.$route.path !== '/sites'
+        "
+      >
+        Moderate
+      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li v-if="this.$route.path == `/sites/dashboard/${this.currentSiteId}`" class="nav-item active">
+      <li
+        v-if="
+          this.$route.path == `/sites/dashboard/${this.currentSiteId}` &&
+          this.$route.path !== '/' &&
+          this.$route.path !== '/login' &&
+          this.$route.path !== '/signup' &&
+          this.$route.path !== '/sites'
+        "
+        class="nav-item active"
+      >
         <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}`">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
       </li>
-      <li v-if="this.$route.path != `/sites/dashboard/${this.currentSiteId}`" class="nav-item">
+      <li
+        v-if="
+          this.$route.path != `/sites/dashboard/${this.currentSiteId}` &&
+          this.$route.path !== '/' &&
+          this.$route.path !== '/login' &&
+          this.$route.path !== '/signup' &&
+          this.$route.path !== '/sites'
+        "
+        class="nav-item"
+      >
         <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}`">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li v-if="this.$route.path === `/sites/dashboard/${this.currentSiteId}/edit`" class="nav-item active">
+      <li
+        v-if="
+          this.$route.path === `/sites/dashboard/${this.currentSiteId}/edit` &&
+          this.$route.path !== '/' &&
+          this.$route.path !== '/login' &&
+          this.$route.path !== '/signup' &&
+          this.$route.path !== '/sites'
+        "
+        class="nav-item active"
+      >
         <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}/edit`">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Edit Site</span>
         </a>
       </li>
-      <li v-if="this.$route.path !== `/sites/dashboard/${this.currentSiteId}/edit`" class="nav-item">
+      <li
+        v-if="
+          this.$route.path !== `/sites/dashboard/${this.currentSiteId}/edit` &&
+          this.$route.path !== '/' &&
+          this.$route.path !== '/login' &&
+          this.$route.path !== '/signup' &&
+          this.$route.path !== '/sites'
+        "
+        class="nav-item"
+      >
         <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}/edit`">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Edit Site</span>
@@ -235,7 +287,15 @@ export default {
     </div>
 
     <!-- Divider -->
-    <hr class="sidebar-divider" />
+    <hr
+      v-if="
+        this.$route.path !== '/' &&
+        this.$route.path !== '/login' &&
+        this.$route.path !== '/signup' &&
+        this.$route.path !== '/sites'
+      "
+      class="sidebar-divider"
+    />
     <!-- </div> -->
 
     <!-- Heading -->
@@ -243,8 +303,29 @@ export default {
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-      <a v-if="!isLoggedIn" class="nav-link" href="/signup">
-        <i class="fas fa-fw fa-folder"></i>
+      <a
+        v-if="
+          (!isLoggedIn && this.$route.path === `/sites/1`) ||
+          this.$route.path === `/carted_services` ||
+          this.$route.path === `/orders-history`
+        "
+        class="nav-link"
+        href="/signup-customer"
+      >
+        <i class="fas fa-user-plus"></i>
+        <span>Register</span>
+      </a>
+      <a
+        v-if="
+          !isLoggedIn &&
+          this.$route.path !== `/sites/1` &&
+          this.$route.path !== `/carted_services` &&
+          this.$route.path !== `/orders-history`
+        "
+        class="nav-link"
+        href="/signup"
+      >
+        <i class="fas fa-user-plus"></i>
         <span>Register</span>
       </a>
       <!-- <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -263,16 +344,62 @@ export default {
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-      <a v-if="!isLoggedIn" class="nav-link" href="/login">
-        <i class="fas fa-fw fa-chart-area"></i>
+      <a
+        v-if="
+          (!isLoggedIn && this.$route.path === `/sites/1`) ||
+          this.$route.path === `/carted_services` ||
+          this.$route.path === `/orders-history`
+        "
+        class="nav-link"
+        href="/login-customer"
+      >
+        <i class="fas fa-user"></i>
+        <span>Login</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        v-if="
+          !isLoggedIn &&
+          this.$route.path !== `/sites/1` &&
+          this.$route.path !== `/carted_services` &&
+          this.$route.path !== `/orders-history`
+        "
+        class="nav-link"
+        href="/login"
+      >
+        <i class="fas fa-user"></i>
         <span>Login</span>
       </a>
     </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-      <a v-if="isLoggedIn" class="nav-link" href="/logout">
-        <i class="fas fa-fw fa-table"></i>
+      <a
+        v-if="
+          (isLoggedIn && this.$route.path === `/sites/1`) ||
+          this.$route.path === `/carted_services` ||
+          this.$route.path === `/orders-history`
+        "
+        class="nav-link"
+        href="/logout-customer"
+      >
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        v-if="
+          isLoggedIn &&
+          this.$route.path !== `/sites/1` &&
+          this.$route.path !== `/carted_services` &&
+          this.$route.path !== `/orders-history`
+        "
+        class="nav-link"
+        href="/logout"
+      >
+        <i class="fas fa-sign-out-alt"></i>
         <span>Logout</span>
       </a>
     </li>
@@ -337,7 +464,14 @@ export default {
             >
               <i class="fas fa-search fa-fw"></i>
             </a> -->
-          <li class="nav-item dropdown no-arrow mx-1">
+          <li
+            v-if="
+              this.$route.path === `/sites/1` ||
+              this.$route.path === `/carted_services` ||
+              this.$route.path === `/orders-history`
+            "
+            class="nav-item dropdown no-arrow mx-1"
+          >
             <a
               class="nav-link dropdown-toggle"
               href="/carted_services"

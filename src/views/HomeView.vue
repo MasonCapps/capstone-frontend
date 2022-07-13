@@ -16,7 +16,7 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
+    <h1 class="text-gray-900">{{ message }}</h1>
     <br />
     <div class="card shadow mb-4">
       <div class="card-header py-3">
