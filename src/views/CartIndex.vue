@@ -41,8 +41,46 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <div v-for="carted_service in carted_services" v-bind:key="carted_service.id">
+    <h1 class="py-4 text-gray-900">{{ message }}</h1>
+    <div class="col-lg-12" style="margin: 45px; margin-top: -10px">
+      <div class="row" style="margin: 10px">
+        <div
+          style="margin: 10px"
+          class="card shadow py-3 mb-4 col-lg-5"
+          v-for="carted_service in carted_services"
+          v-bind:key="carted_service.id"
+        >
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{{ carted_service.service.name }}</h6>
+          </div>
+          <div style="text-align: center" class="card-body">
+            <div>Scheduled Date: {{ carted_service.scheduled_date }}</div>
+            <div>Price: ${{ carted_service.service.price }}</div>
+            <div>Frequency: {{ carted_service.service.frequency }}</div>
+          </div>
+          <div>
+            <button class="py-2 btn btn-sm btn-danger mb-3 col-6" v-on:click="deleteCartedService(carted_service)">
+              Remove From Cart
+            </button>
+          </div>
+        </div>
+        <button
+          style="margin: 10px"
+          class="py-2 btn btn-sm btn-primary mb-3 col-2"
+          v-on:click="this.$router.push(`/sites/${this.siteId}`)"
+        >
+          Back To Site
+        </button>
+        <button
+          style="margin: 10px; margin-left: 413px"
+          class="py-2 btn btn-sm btn-primary mb-3 col-2"
+          v-on:click="createOrder()"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+    <!-- <div v-for="carted_service in carted_services" v-bind:key="carted_service.id">
       <h2>{{ carted_service.service.name }}</h2>
       <h2>{{ carted_service.scheduled_date }}</h2>
       <h2>{{ carted_service.service.price }}</h2>
@@ -50,7 +88,7 @@ export default {
       <button v-on:click="deleteCartedService(carted_service)">Delete From Cart</button>
     </div>
     <button v-on:click="this.$router.push(`/sites/${this.siteId}`)">Back To Site</button>
-    <button v-on:click="createOrder()">Checkout</button>
+    <button v-on:click="createOrder()">Checkout</button> -->
   </div>
 </template>
 

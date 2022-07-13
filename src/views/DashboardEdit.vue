@@ -134,15 +134,15 @@ export default {
       <div>
         <h1 style="text-align: center"><u>Create Service</u></h1>
         <div>
-          <label>Service Name:</label>
+          Service Name:
           <input type="text" v-model="this.newServiceParams.name" />
         </div>
         <div>
-          <label>Price in Dollars:</label>
+          Price in Dollars:
           <input type="text" v-model="this.newServiceParams.price" />
         </div>
         <div>
-          <label>Frequency:</label>
+          Frequency:
           <input type="text" v-model="this.newServiceParams.frequency" />
         </div>
         <br />
@@ -161,15 +161,15 @@ export default {
       <h1 style="text-align: center"><u>Edit Service</u></h1>
       <div>
         <div>
-          <label>Service Name:</label>
+          Service Name:
           <input type="text" v-model="this.currentService.name" />
         </div>
         <div>
-          <label>Price in Dollars:</label>
+          Price in Dollars:
           <input type="text" v-model="this.currentService.price" />
         </div>
         <div>
-          <label>Frequency:</label>
+          Frequency:
           <input type="text" v-model="this.currentService.frequency" />
         </div>
       </div>

@@ -108,66 +108,131 @@ export default {
       </div>
       <div class="sidebar-brand-text mx-3">Servify</div>
     </a>
+    <div
+      v-if="
+        this.$route.path === `/sites/1` ||
+        this.$route.path === `/carted_services` ||
+        this.$route.path === `/orders-history`
+      "
+    >
+      <!-- Nav Item - Dashboard -->
+      <li v-if="this.$route.path == '/sites/1'" class="nav-item active">
+        <a v-if="isLoggedIn" class="nav-link" href="/sites/1">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li v-if="this.$route.path != '/sites/1'" class="nav-item">
+        <a class="nav-link" href="/sites/1">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Home</span>
+        </a>
+      </li>
 
+      <!-- <div v-if="currentSiteId"> -->
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <!-- <div v-if="currentSiteId"> -->
+      <!-- Heading -->
+      <div class="sidebar-heading">Moderate</div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li v-if="this.$route.path == `/carted_services`" class="nav-item active">
+        <a class="nav-link" v-bind:href="`/carted_services`">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Cart</span>
+        </a>
+      </li>
+      <li v-if="this.$route.path != `/carted_services`" class="nav-item">
+        <a class="nav-link" v-bind:href="`/carted_services`">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Cart</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li v-if="this.$route.path === `/orders-history`" class="nav-item active">
+        <a class="nav-link" v-bind:href="`/orders-history`">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Order History</span>
+        </a>
+      </li>
+      <li v-if="this.$route.path !== `/orders-history`" class="nav-item">
+        <a class="nav-link" v-bind:href="`/orders-history`">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Order History</span>
+        </a>
+      </li>
+    </div>
     <!-- Divider -->
     <hr class="sidebar-divider my-0" />
+    <div
+      v-if="
+        this.$route.path !== `/sites/1` &&
+        this.$route.path !== `/carted_services` &&
+        this.$route.path !== `/orders-history`
+      "
+    >
+      <!-- Nav Item - Dashboard -->
+      <li v-if="this.$route.path === '/sites'" class="nav-item active">
+        <a v-if="isLoggedIn" class="nav-link" href="/sites">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Home</span>
+        </a>
+        <a v-if="!isLoggedIn" class="nav-link" href="/">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li v-if="this.$route.path !== '/sites'" class="nav-item">
+        <a v-if="isLoggedIn" class="nav-link" href="/sites">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Home</span>
+        </a>
+        <a v-if="!isLoggedIn" class="nav-link" href="/">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Home</span>
+        </a>
+      </li>
 
-    <!-- Nav Item - Dashboard -->
-    <li v-if="this.$route.path === '/sites'" class="nav-item active">
-      <a v-if="isLoggedIn" class="nav-link" href="/sites">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Home</span>
-      </a>
-      <a v-if="!isLoggedIn" class="nav-link" href="/">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Home</span>
-      </a>
-    </li>
-    <li v-if="this.$route.path !== '/sites'" class="nav-item">
-      <a v-if="isLoggedIn" class="nav-link" href="/sites">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Home</span>
-      </a>
-      <a v-if="!isLoggedIn" class="nav-link" href="/">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Home</span>
-      </a>
-    </li>
+      <!-- <div v-if="currentSiteId"> -->
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
 
-    <!-- Divider -->
-    <hr class="sidebar-divider" />
+      <!-- <div v-if="currentSiteId"> -->
+      <!-- Heading -->
+      <div class="sidebar-heading">Moderate</div>
 
-    <!-- <div v-if="currentSiteId"> -->
-    <!-- Heading -->
-    <div class="sidebar-heading">Moderate</div>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li v-if="this.$route.path == `/sites/dashboard/${this.currentSiteId}`" class="nav-item active">
+        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}`">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li v-if="this.$route.path != `/sites/dashboard/${this.currentSiteId}`" class="nav-item">
+        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}`">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li v-if="this.$route.path == `/sites/dashboard/${this.currentSiteId}`" class="nav-item active">
-      <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}`">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-    <li v-if="this.$route.path != `/sites/dashboard/${this.currentSiteId}`" class="nav-item">
-      <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}`">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li v-if="this.$route.path === `/sites/dashboard/${this.currentSiteId}/edit`" class="nav-item active">
-      <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}/edit`">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Edit Site</span>
-      </a>
-    </li>
-    <li v-if="this.$route.path !== `/sites/dashboard/${this.currentSiteId}/edit`" class="nav-item">
-      <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}/edit`">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Edit Site</span>
-      </a>
-    </li>
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li v-if="this.$route.path === `/sites/dashboard/${this.currentSiteId}/edit`" class="nav-item active">
+        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}/edit`">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Edit Site</span>
+        </a>
+      </li>
+      <li v-if="this.$route.path !== `/sites/dashboard/${this.currentSiteId}/edit`" class="nav-item">
+        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}/edit`">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Edit Site</span>
+        </a>
+      </li>
+      <!-- </div> -->
+    </div>
 
     <!-- Divider -->
     <hr class="sidebar-divider" />
@@ -272,105 +337,21 @@ export default {
             >
               <i class="fas fa-search fa-fw"></i>
             </a> -->
-          <!-- Dropdown - Messages -->
-          <!-- <div
-              class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-              aria-labelledby="searchDropdown"
-            >
-              <form class="form-inline mr-auto w-100 navbar-search">
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control bg-light border-0 small"
-                    placeholder="Search for..."
-                    aria-label="Search"
-                    aria-describedby="basic-addon2"
-                  />
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                      <i class="fas fa-search fa-sm"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div> -->
-          <!-- </li> -->
-
-          <!-- Nav Item - Alerts -->
-          <!-- <li class="nav-item dropdown no-arrow mx-1">
+          <li class="nav-item dropdown no-arrow mx-1">
             <a
               class="nav-link dropdown-toggle"
-              href="#"
-              id="alertsDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <i class="fas fa-bell fa-fw"></i> -->
-          <!-- Counter - Alerts -->
-          <!-- <span class="badge badge-danger badge-counter">3+</span>
-            </a> -->
-          <!-- Dropdown - Alerts -->
-          <!-- <div
-              class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-              aria-labelledby="alertsDropdown"
-            >
-              <h6 class="dropdown-header">Alerts Center</h6>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                  <div class="icon-circle bg-primary">
-                    <i class="fas fa-file-alt text-white"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="small text-gray-500">December 12, 2019</div>
-                  <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                </div>
-              </a>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                  <div class="icon-circle bg-success">
-                    <i class="fas fa-donate text-white"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="small text-gray-500">December 7, 2019</div>
-                  $290.29 has been deposited into your account!
-                </div>
-              </a>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                  <div class="icon-circle bg-warning">
-                    <i class="fas fa-exclamation-triangle text-white"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="small text-gray-500">December 2, 2019</div>
-                  Spending Alert: We've noticed unusually high spending for your account.
-                </div>
-              </a>
-              <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-            </div>
-          </li> -->
-
-          <!-- Nav Item - Messages -->
-          <!-- <li class="nav-item dropdown no-arrow mx-1">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
+              href="/carted_services"
               id="messagesDropdown"
               role="button"
-              data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <i class="fas fa-envelope fa-fw"></i> -->
-          <!-- Counter - Messages -->
-          <!-- <span class="badge badge-danger badge-counter">7</span>
-            </a> -->
-          <!-- Dropdown - Messages -->
-          <!-- <div
+              <i v-on:click="this.$route.push('/carted_services')" class="fas fa-shopping-cart fa-lg"></i>
+              <!-- Counter - Messages -->
+              <!-- <span class="badge badge-danger badge-counter">7</span> -->
+            </a>
+            <!-- Dropdown - Messages -->
+            <!-- <div
               class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
               aria-labelledby="messagesDropdown"
             >
@@ -425,8 +406,8 @@ export default {
                 </div>
               </a>
               <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-            </div>
-          </li> -->
+            </div> -->
+          </li>
 
           <div class="topbar-divider d-none d-sm-block"></div>
 
