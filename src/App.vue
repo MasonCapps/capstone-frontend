@@ -11,10 +11,11 @@ export default {
     };
   },
   created: function () {
-    this.localStorageSiteId = localStorage.site_id;
-    console.log(this.localStorageSiteId);
+    // this.localStorageSiteId = localStorage.site_id;
+    // console.log(this.localStorageSiteId);
     this.localStorageCreatorSiteId = localStorage.creator_site;
     localStorage.site;
+    console.log(this.localStorageCreatorSiteId);
   },
   watch: {
     $route: function () {
@@ -25,8 +26,6 @@ export default {
     updateSiteId: function (siteId) {
       console.log(siteId);
       this.currentSiteId = siteId;
-      localStorage.setItem("site", siteId);
-      console.log(localStorage.site);
     },
   },
 };
@@ -230,7 +229,7 @@ export default {
       <!-- Nav Item - Pages Collapse Menu -->
       <li
         v-if="
-          this.$route.path == `/sites/dashboard/${this.currentSiteId}` &&
+          this.$route.path == `/sites/dashboard/${this.localStorageCreatorSiteId}` &&
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
@@ -241,14 +240,14 @@ export default {
         "
         class="nav-item active"
       >
-        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}`">
+        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.localStorageCreatorSiteId}`">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
       </li>
       <li
         v-if="
-          this.$route.path != `/sites/dashboard/${this.currentSiteId}` &&
+          this.$route.path != `/sites/dashboard/${this.localStorageCreatorSiteId}` &&
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
@@ -259,7 +258,7 @@ export default {
         "
         class="nav-item"
       >
-        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}`">
+        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.localStorageCreatorSiteId}`">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
@@ -268,7 +267,7 @@ export default {
       <!-- Nav Item - Utilities Collapse Menu -->
       <li
         v-if="
-          this.$route.path === `/sites/dashboard/${this.currentSiteId}/edit` &&
+          this.$route.path === `/sites/dashboard/${this.localStorageCreatorSiteId}/edit` &&
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
@@ -279,14 +278,14 @@ export default {
         "
         class="nav-item active"
       >
-        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}/edit`">
+        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.localStorageCreatorSiteId}/edit`">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Edit Site</span>
         </a>
       </li>
       <li
         v-if="
-          this.$route.path !== `/sites/dashboard/${this.currentSiteId}/edit` &&
+          this.$route.path !== `/sites/dashboard/${this.localStorageCreatorSiteId}/edit` &&
           this.$route.path !== '/' &&
           this.$route.path !== '/login' &&
           this.$route.path !== '/signup' &&
@@ -297,7 +296,7 @@ export default {
         "
         class="nav-item"
       >
-        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.currentSiteId}/edit`">
+        <a class="nav-link" v-bind:href="`/sites/dashboard/${this.localStorageCreatorSiteId}/edit`">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Edit Site</span>
         </a>
