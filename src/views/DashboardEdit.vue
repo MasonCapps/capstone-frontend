@@ -132,7 +132,7 @@ export default {
   <dialog id="service-add" style="margin-left: 419px; width: 500px">
     <form method="dialog">
       <div>
-        <h1 style="text-align: center"><u>Create Service</u></h1>
+        <h1 style="text-align: center">Create Service</h1>
         <div style="text-align: center">
           Service Name:
           <input type="text" v-model="this.newServiceParams.name" />
@@ -158,7 +158,7 @@ export default {
 
   <dialog id="service-edit" style="margin-left: 419px; width: 500px">
     <form method="dialog">
-      <h1 style="text-align: center"><u>Edit Service</u></h1>
+      <h1 style="text-align: center">Edit Service</h1>
       <div>
         <div style="text-align: center">
           Service Name:
