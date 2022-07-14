@@ -34,7 +34,7 @@ export default {
   <div class="container">
     <!-- Outer Row -->
     <div class="row justify-content-center">
-      <div class="col-xl-10 col-lg-11 col-lg-10">
+      <div class="col-xl-8 col-lg-8 col-lg-8">
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->

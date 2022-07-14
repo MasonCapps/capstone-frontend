@@ -21,7 +21,7 @@ export default {
       <h6>
         <pre
           style="font-family: Helvetica, Arial, sans-serif; margin-left: 50px"
-          class="text-primary col-lg-10 container text-gray-900"
+          class="text-primary col-lg-10 container-custom text-gray-900"
         >
           The first <span style="color: #4e73df">business facing</span> and <span style="color: #4e73df">consumer facing</span> platform built directly for <span style="color: #4e73df">service businesses.</span>
         </pre>
@@ -54,7 +54,7 @@ export default {
 .home {
   text-align: center;
 }
-.container {
+.container-custom {
   display: flex;
   justify-content: center;
 }

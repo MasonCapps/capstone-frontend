@@ -25,7 +25,7 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div style="display: flex; justify-content: center">
     <div class="card o-hidden border-0 shadow-lg my-5">
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->

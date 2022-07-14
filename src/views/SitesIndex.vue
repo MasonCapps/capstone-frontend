@@ -45,7 +45,7 @@ export default {
         Create New Site
       </button>
     </row>
-    <div v-for="site in sites" v-bind:key="site.id">
+    <div v-for="site in sites.reverse()" v-bind:key="site.id">
       <div class="container card shadow mb-4 col-lg-8">
         <!-- Card Header - Dropdown -->
         <div class="card-shadow py-3 d-flex flex-row align-items-center justify-content-between col-lg-12">
