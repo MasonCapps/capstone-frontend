@@ -16,7 +16,7 @@ export default {
 
 <template>
   <div class="home">
-    <div class="py-5">
+    <div class="py-4">
       <h1 class="py-2 text-gray-900">{{ message }}</h1>
       <h6>
         <pre

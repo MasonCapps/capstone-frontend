@@ -41,7 +41,7 @@ export default {
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create Site</h1>
               </div>
-              <form v-on:submit.prevent="submit()" class="user">
+              <form v-on:submit.prevent="sitesCreate()" class="user">
                 <div class="form-group row">
                   <div class="col-sm-12 mb-3 mb-sm-0">
                     <input
@@ -68,7 +68,7 @@ export default {
                     />
                   </div>
                   <input
-                    type="email"
+                    type="text"
                     v-model="newServiceParams.price"
                     class="form-control form-control-user col-sm-4"
                     id="exampleInputEmail"
@@ -76,7 +76,7 @@ export default {
                   />
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <input
-                      type="password"
+                      type="text"
                       v-model="newServiceParams.frequency"
                       class="form-control form-control-user"
                       id="exampleInputPassword"
