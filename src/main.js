@@ -4,7 +4,7 @@ import router from "./router";
 import axios from "axios";
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://git.heroku.com/cryptic-ocean-11215.git/";
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://cryptic-ocean-11215.herokuapp.com/";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
